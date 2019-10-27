@@ -22,7 +22,7 @@
 
 <p>
   <strong>Picture:</strong>
-  <%= @running_blog.picture %>
+  <%= image_tag(@running_blog.picture_url, width: 400) if @running_blog.picture.present? %>
 </p>
 
 <%= link_to 'Edit', edit_running_blog_path(@running_blog) %> |

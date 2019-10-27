@@ -21,7 +21,7 @@
         <td><%= running_blog.author %></td>
         <td><%= running_blog.date %></td>
         <td><%= running_blog.content %></td>
-        <td><%= running_blog.picture %></td>
+        <%= image_tag running_blog.picture_url, width: '100%' if running_blog.picture.present? %>
         <td><%= link_to 'Show', running_blog %></td>
         <td><%= link_to 'Edit', edit_running_blog_path(running_blog) %></td>
         <td><%= link_to 'Destroy', running_blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>

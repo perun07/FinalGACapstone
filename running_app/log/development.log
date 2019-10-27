@@ -19,3 +19,347 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 38ms (Views: 23.7ms | ActiveRecord: 0.0ms | Allocations: 5303)
 
 
+Started GET "/" for ::1 at 2019-10-27 00:27:54 -0400
+  [1m[35m (41.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:27:55 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (2.5ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 10.5ms | Allocations: 1624)
+[Webpacker] Compiling…
+[Webpacker] Compiled all packs in /Users/nb/Documents/project/railsFinalGa/FinalGACapstone/running_app/public/packs
+Completed 200 OK in 8574ms (Views: 8551.9ms | ActiveRecord: 4.6ms | Allocations: 1384100)
+
+
+Started GET "/running_blogs/new" for ::1 at 2019-10-27 00:28:18 -0400
+Processing by RunningBlogsController#new as HTML
+  Rendering running_blogs/new.html.erb within layouts/application
+  Rendered running_blogs/_form.html.erb (Duration: 49.7ms | Allocations: 9234)
+  Rendered running_blogs/new.html.erb within layouts/application (Duration: 51.9ms | Allocations: 9594)
+Completed 200 OK in 85ms (Views: 62.0ms | ActiveRecord: 6.8ms | Allocations: 21106)
+
+
+Started POST "/running_blogs" for ::1 at 2019-10-27 00:28:58 -0400
+Processing by RunningBlogsController#create as HTML
+  Parameters: {"authenticity_token"=>"cwAwm4qB8pnU9S+2lYtBlW0cZF/XFZ/PaLIWN7FnrtpV6Jc1Q4ic6rKxa/5BReMmx1qnHBtLhbnHIc8Q+uSJaA==", "running_blog"=>{"title"=>"My 5k Training Program", "author"=>"Perun07", "date"=>"10/27/2019", "content"=>"I want to write about my training plan that is coming up. ", "picture"=>#<ActionDispatch::Http::UploadedFile:0x00007fe477f2fc20 @tempfile=#<Tempfile:/var/folders/2z/6wjqgvks5zjcgpgsw7ws2xhm0000gn/T/RackMultipart20191027-57346-zi3bk2.jpeg>, @original_filename="image.jpeg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"running_blog[picture]\"; filename=\"image.jpeg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Running blog"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/running_blogs_controller.rb:30:in `block in create'
+  [1m[36mRunningBlog Create (84.1ms)[0m  [1m[32mINSERT INTO "running_blogs" ("title", "author", "date", "content", "picture", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "My 5k Training Program"], ["author", "Perun07"], ["date", "10/27/2019"], ["content", "I want to write about my training plan that is coming up. "], ["picture", "image.jpeg"], ["created_at", "2019-10-27 04:28:58.409861"], ["updated_at", "2019-10-27 04:28:58.409861"]]
+  ↳ app/controllers/running_blogs_controller.rb:30:in `block in create'
+  [1m[35m (38.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/running_blogs_controller.rb:30:in `block in create'
+Redirected to http://localhost:3000/running_blogs/1
+Completed 302 Found in 143ms (ActiveRecord: 122.5ms | Allocations: 10271)
+
+
+Started GET "/running_blogs/1" for ::1 at 2019-10-27 00:28:58 -0400
+Processing by RunningBlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRunningBlog Load (0.3ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs" WHERE "running_blogs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/running_blogs_controller.rb:67:in `set_running_blog'
+  Rendering running_blogs/show.html.erb within layouts/application
+  Rendered running_blogs/show.html.erb within layouts/application (Duration: 2.3ms | Allocations: 467)
+Completed 200 OK in 43ms (Views: 33.8ms | ActiveRecord: 0.7ms | Allocations: 8320)
+
+
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:29:05 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (0.6ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 12.8ms | Allocations: 2651)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.6ms | Allocations: 3136)
+
+
+  
+ActionView::Template::Error (undefined method `picture' for nil:NilClass):
+    21:         <td><%= running_blog.author %></td>
+    22:         <td><%= running_blog.date %></td>
+    23:         <td><%= running_blog.content %></td>
+    24:         <%= image_tag(@running_blog.picture_url, width: '100%') if @running_blog.picture.present? %>
+    25:         <td><%= link_to 'Show', running_blog %></td>
+    26:         <td><%= link_to 'Edit', edit_running_blog_path(running_blog) %></td>
+    27:         <td><%= link_to 'Destroy', running_blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/running_blogs/index.html.erb:24
+app/views/running_blogs/index.html.erb:18
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:29:38 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (0.6ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 6.2ms | Allocations: 1905)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.6ms | Allocations: 2403)
+
+
+  
+ActionView::Template::Error (undefined method `picture' for nil:NilClass):
+    21:         <td><%= running_blog.author %></td>
+    22:         <td><%= running_blog.date %></td>
+    23:         <td><%= running_blog.content %></td>
+    24:         <%= image_tag(@running_blog.picture_url, width: '100%') if @running_blog.picture.present? %>
+    25:         <td><%= link_to 'Show', running_blog %></td>
+    26:         <td><%= link_to 'Edit', edit_running_blog_path(running_blog) %></td>
+    27:         <td><%= link_to 'Destroy', running_blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/running_blogs/index.html.erb:24
+app/views/running_blogs/index.html.erb:18
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:31:51 -0400
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (0.7ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 23.5ms | Allocations: 7905)
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 5.4ms | Allocations: 11234)
+
+
+  
+ActionView::Template::Error (undefined method `picture_url' for nil:NilClass):
+    21:         <td><%= running_blog.author %></td>
+    22:         <td><%= running_blog.date %></td>
+    23:         <td><%= running_blog.content %></td>
+    24:         <%= image_tag(@running_blog.picture_url, width: '100%')%>
+    25:         <td><%= link_to 'Show', running_blog %></td>
+    26:         <td><%= link_to 'Edit', edit_running_blog_path(running_blog) %></td>
+    27:         <td><%= link_to 'Destroy', running_blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/running_blogs/index.html.erb:24
+app/views/running_blogs/index.html.erb:18
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:32:04 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (0.8ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 6.0ms | Allocations: 1913)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.8ms | Allocations: 2420)
+
+
+  
+ActionView::Template::Error (undefined method `picture_url' for nil:NilClass):
+    21:         <td><%= running_blog.author %></td>
+    22:         <td><%= running_blog.date %></td>
+    23:         <td><%= running_blog.content %></td>
+    24:         <%= image_tag(@running_blog.picture_url, width: '100%')%>
+    25:         <td><%= link_to 'Show', running_blog %></td>
+    26:         <td><%= link_to 'Edit', edit_running_blog_path(running_blog) %></td>
+    27:         <td><%= link_to 'Destroy', running_blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/running_blogs/index.html.erb:24
+app/views/running_blogs/index.html.erb:18
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:35:11 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (1.0ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 22.3ms | Allocations: 6757)
+Completed 200 OK in 1765ms (Views: 1744.5ms | ActiveRecord: 7.4ms | Allocations: 1364860)
+
+
+Started GET "/running_blogs/1" for ::1 at 2019-10-27 00:35:24 -0400
+Processing by RunningBlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRunningBlog Load (0.7ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs" WHERE "running_blogs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/running_blogs_controller.rb:67:in `set_running_blog'
+  Rendering running_blogs/show.html.erb within layouts/application
+  Rendered running_blogs/show.html.erb within layouts/application (Duration: 2.2ms | Allocations: 461)
+Completed 200 OK in 22ms (Views: 15.2ms | ActiveRecord: 0.9ms | Allocations: 8285)
+
+
+Started GET "/running_blogs/1/edit" for ::1 at 2019-10-27 00:35:27 -0400
+Processing by RunningBlogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRunningBlog Load (0.4ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs" WHERE "running_blogs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/running_blogs_controller.rb:67:in `set_running_blog'
+  Rendering running_blogs/edit.html.erb within layouts/application
+  Rendered running_blogs/_form.html.erb (Duration: 15.0ms | Allocations: 3611)
+  Rendered running_blogs/edit.html.erb within layouts/application (Duration: 21.8ms | Allocations: 4010)
+Completed 200 OK in 38ms (Views: 33.1ms | ActiveRecord: 0.4ms | Allocations: 11385)
+
+
+Started PATCH "/running_blogs/1" for ::1 at 2019-10-27 00:35:45 -0400
+Processing by RunningBlogsController#update as HTML
+  Parameters: {"authenticity_token"=>"C8d+33Z5xtl/oghyLLv8TG5xK3lblE+/R0dgL3tLJJ8GDz0IyCpxJHHvJ8yjOJVwQxsb5x255Xtuef8nGaWXBA==", "running_blog"=>{"title"=>"My 5k Training Program", "author"=>"Perun07", "date"=>"10/27/2019", "content"=>"I want to write about my training plan that is coming up. We have liftoff!!!"}, "commit"=>"Update Running blog", "id"=>"1"}
+  [1m[36mRunningBlog Load (1.2ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs" WHERE "running_blogs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/running_blogs_controller.rb:67:in `set_running_blog'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/running_blogs_controller.rb:44:in `block in update'
+  [1m[36mRunningBlog Update (1.9ms)[0m  [1m[33mUPDATE "running_blogs" SET "content" = $1, "updated_at" = $2 WHERE "running_blogs"."id" = $3[0m  [["content", "I want to write about my training plan that is coming up. We have liftoff!!!"], ["updated_at", "2019-10-27 04:35:45.603510"], ["id", 1]]
+  ↳ app/controllers/running_blogs_controller.rb:44:in `block in update'
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/running_blogs_controller.rb:44:in `block in update'
+Redirected to http://localhost:3000/running_blogs/1
+Completed 302 Found in 43ms (ActiveRecord: 4.0ms | Allocations: 3881)
+
+
+Started GET "/running_blogs/1" for ::1 at 2019-10-27 00:35:45 -0400
+Processing by RunningBlogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRunningBlog Load (0.5ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs" WHERE "running_blogs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/running_blogs_controller.rb:67:in `set_running_blog'
+  Rendering running_blogs/show.html.erb within layouts/application
+  Rendered running_blogs/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 208)
+Completed 200 OK in 20ms (Views: 16.0ms | ActiveRecord: 0.5ms | Allocations: 7437)
+
+
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:35:48 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (0.5ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 885)
+Completed 200 OK in 19ms (Views: 17.2ms | ActiveRecord: 0.5ms | Allocations: 7563)
+
+
+Started GET "/" for ::1 at 2019-10-27 00:35:59 -0400
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:35:59 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (2.5ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 5.2ms | Allocations: 884)
+Completed 200 OK in 18ms (Views: 14.5ms | ActiveRecord: 2.5ms | Allocations: 7561)
+
+
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:36:01 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (0.9ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 886)
+Completed 200 OK in 20ms (Views: 18.2ms | ActiveRecord: 0.9ms | Allocations: 7566)
+
+
+Started GET "/about" for ::1 at 2019-10-27 00:36:03 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/about"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/about" for ::1 at 2019-10-27 00:39:31 -0400
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/about"):
+  
+actionpack (6.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-10-27 00:39:36 -0400
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:39:36 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (0.9ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 29.7ms | Allocations: 6653)
+Completed 200 OK in 1864ms (Views: 1845.8ms | ActiveRecord: 7.8ms | Allocations: 1364168)
+
+
+Started GET "/pages/about" for ::1 at 2019-10-27 00:39:40 -0400
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (Duration: 2.7ms | Allocations: 93)
+Completed 200 OK in 21ms (Views: 19.9ms | ActiveRecord: 0.0ms | Allocations: 7392)
+
+
+Started GET "/" for ::1 at 2019-10-27 00:39:52 -0400
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:39:52 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (0.6ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 901)
+Completed 200 OK in 17ms (Views: 15.1ms | ActiveRecord: 0.6ms | Allocations: 7596)
+
+
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:39:53 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (0.5ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 885)
+Completed 200 OK in 24ms (Views: 21.9ms | ActiveRecord: 0.5ms | Allocations: 7566)
+
+
+Started GET "/pages/about" for ::1 at 2019-10-27 00:39:55 -0400
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 15ms (Views: 13.7ms | ActiveRecord: 0.0ms | Allocations: 6677)
+
+
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:39:56 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (6.4ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 9.2ms | Allocations: 884)
+Completed 200 OK in 23ms (Views: 15.1ms | ActiveRecord: 6.4ms | Allocations: 7561)
+
+
+Started GET "/" for ::1 at 2019-10-27 00:39:57 -0400
+Started GET "/running_blogs" for ::1 at 2019-10-27 00:39:57 -0400
+Processing by RunningBlogsController#index as HTML
+  Rendering running_blogs/index.html.erb within layouts/application
+  [1m[36mRunningBlog Load (0.7ms)[0m  [1m[34mSELECT "running_blogs".* FROM "running_blogs"[0m
+  ↳ app/views/running_blogs/index.html.erb:18
+  Rendered running_blogs/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 891)
+Completed 200 OK in 20ms (Views: 17.3ms | ActiveRecord: 0.7ms | Allocations: 7573)
+
+
