@@ -1,0 +1,2 @@
+class RunningBlog < ApplicationRecord
+end
